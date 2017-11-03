@@ -1,0 +1,15 @@
+<% if (locals.user) { %>
+  LOGGED IN
+<% }else {%>
+  MONKEY BANANA
+<% } %>
+
+<%- messages() %>
+<form class="" action="/users/register" method="post">
+  <input type="text" name="name" placeholder="name">
+  <input type="text" name="username" placeholder="username">
+  <input type="text" name="email" placeholder="Email">
+  <input type="password" name="password" placeholder="password">
+  <input type="password" name="password2" placeholder="password">
+  <input type="submit" name="" value="Create">
+</form>
