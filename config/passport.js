@@ -12,7 +12,6 @@ module.exports = (passport) => {
     },
     (email , password, done) => {
     // match username
-    console.log('hola');
     let query = {email: email};
     User.findOne(query, (err , user) => {
       if (err) {
@@ -24,7 +23,6 @@ module.exports = (passport) => {
           message: 'User does not exist',
         })
       }
-      console.log('good to go');
       // match password
       bcrypt.compare(password , user.password,(err, isMatch) => {
         if (err) {
