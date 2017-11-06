@@ -15,6 +15,7 @@ var messages = require('express-messages');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var articles = require('./routes/articles');
 
 var app = express();
 
@@ -61,7 +62,7 @@ app.get('*', (req ,res, next) => {
 
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/articles', articles);
 
 mongoose.connect(config.database);
 // catch 404 and forward to error handler
