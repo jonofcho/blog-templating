@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // express session middleware
 app.use(session({
-  secret: 'monkeybanana',
+  secret: config.secret,
   resave: true,
   saveUninitialized: true,
   // cookie: {secure: true},
