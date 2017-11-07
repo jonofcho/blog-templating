@@ -1,6 +1,43 @@
-<form class="" action="/articles/create" method="post">
-  <input type="text" name="header" value="">
-  <textarea name="body" rows="8" cols="80"></textarea>
-  <input type="text" name="estimatedReadTime" placeholder="minutes">
-  <input type="submit" name="" value="Create">
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <% include partials/stylesheets %>
+  </head>
+  <body>
+    <% include partials/header_navigation %>
+    <div class="container">
+      <form class="" action="/articles/create" method="post">
+        <input type="text" name="header" value="">
+        <textarea name="body" rows="8" cols="80"></textarea>
+        <input type="text" name="estimatedReadTime" placeholder="minutes">
+        <div class="chips">
+
+        </div>
+        <input type="hidden" name="tags" value="">
+        <input type="submit" name="" value="Create">
+      </form>
+    </div>
+    <% include partials/theme_javascripts %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.chips').material_chip();
+        var arrVal = [];
+        $('.chips').on('chip.add', function(e, chip){
+
+          arrVal.push(chip.tag);
+          $('input[name=tags]').val(arrVal)
+          console.log($('input[name=tags]').val());
+        });
+
+        $('.chips').on('chip.delete', function(e, chip){
+          // you have the deleted chip here
+        });
+
+        $('.chips').on('chip.select', function(e, chip){
+          // you have the selected chip here
+        });
+      })
+    </script>
+  </body>
+</html>

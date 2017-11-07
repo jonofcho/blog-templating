@@ -31,6 +31,9 @@ var articleSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  tags: [{
+    type: String,
+  }]
 })
 
 const User = module.exports = mongoose.model('Article' , articleSchema);

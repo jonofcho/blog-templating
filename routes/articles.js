@@ -21,22 +21,29 @@ router.post('/create', ensureAuthenticated, (req, res, next) => {
   const createdDate = new Date();
   const createdBy = req.user._id;
   const estimatedReadTime = req.body.estimatedReadTime;
-
+  const tags = [];
+  console.log(req.body.tags);
+  const bodyTags = req.body.tags.split(',');
+  bodyTags.forEach((tag) => {
+    tags.push(tag);
+  })
+  
   let newArticle = new Article({
     header : header,
     body: body,
     createdDate: createdDate,
     createdBy: createdBy,
     estimatedReadTime: estimatedReadTime,
+    tags: tags,
   })
 
   newArticle.save((err) => {
-    // if (err) {
-    //   console.log(err);
-    //   return
-    // }
+    if (err) {
+      console.log(err);
+      return
+    }
     // else {
-      res.render('articles');
+      res.redirect('/articles');
     // }
   })
 })
