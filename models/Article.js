@@ -6,7 +6,7 @@ var articleSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  body:{
+  text:{
     type: String,
     required: true,
   },

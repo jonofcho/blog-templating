@@ -2,11 +2,20 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include partials/stylesheets %>
   </head>
-  <%- user.email %>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <% include partials/header_navigation %>
+    <div class="container">
+      <a href="/users/login">LOGIN</a>
+      <a href="/articles/create">CREATE ARTICLE</a>
+      <h1><%= title %></h1>
+      <p>Welcome to <%= title %></p>
+      <% locals.articles.forEach(function(article){ %>
+        <h3><%= article.header %></h3>
+        <p><%= article.body %></p>
+      <%})%>
+    </div>
+    <% include partials/theme_javascripts %>
   </body>
 </html>

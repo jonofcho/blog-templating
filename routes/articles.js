@@ -7,17 +7,18 @@ router.get('/', (req, res, next) => {
     res.render('articles', {
       articles: articles,
     });
-
   });
 })
 
-router.get('/create', ensureAuthenticated, (req, res, next) => {
+router.get('/create', /*ensureAuthenticated,*/ (req, res, next) => {
   res.render('newarticle');
 
 })
-router.post('/create', ensureAuthenticated, (req, res, next) => {
+router.post('/create', /*ensureAuthenticated,*/ (req, res, next) => {
+	console.log('body: ' + JSON.stringify(req.body));
+  // res.send(req.body)
   const header = req.body.header;
-  const body = req.body.body;
+  const text = req.body.text;
   const createdDate = new Date();
   const createdBy = req.user._id;
   const estimatedReadTime = req.body.estimatedReadTime;
@@ -27,16 +28,16 @@ router.post('/create', ensureAuthenticated, (req, res, next) => {
   bodyTags.forEach((tag) => {
     tags.push(tag);
   })
-  
+
   let newArticle = new Article({
     header : header,
-    body: body,
+    body: text,
     createdDate: createdDate,
     createdBy: createdBy,
     estimatedReadTime: estimatedReadTime,
     tags: tags,
   })
-
+  
   newArticle.save((err) => {
     if (err) {
       console.log(err);
@@ -57,7 +58,6 @@ router.delete('/article/:id',ensureAuthenticated, (req ,res ,next) => {
     }
     res.send('article removed')
   })
-
 })
 
 function ensureAuthenticated(req, res, next){

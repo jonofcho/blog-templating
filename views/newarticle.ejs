@@ -7,16 +7,21 @@
   <body>
     <% include partials/header_navigation %>
     <div class="container">
-      <form class="" action="/articles/create" method="post">
+      <div class="js-editor">
+
+      </div>
+      <%# <button class="js-editor--save" type="button" name="button">SAVE</button>%>
+      <%# <form class="" action="/articles/create" method="post">%>
         <input type="text" name="header" value="">
-        <textarea name="body" rows="8" cols="80"></textarea>
+
         <input type="text" name="estimatedReadTime" placeholder="minutes">
         <div class="chips">
 
         </div>
         <input type="hidden" name="tags" value="">
-        <input type="submit" name="" value="Create">
-      </form>
+      <%# </form>%>
+      <button class="js-article__submit" type="button" name="">Create</button>
+
     </div>
     <% include partials/theme_javascripts %>
     <script type="text/javascript">
@@ -24,10 +29,9 @@
         $('.chips').material_chip();
         var arrVal = [];
         $('.chips').on('chip.add', function(e, chip){
-
           arrVal.push(chip.tag);
           $('input[name=tags]').val(arrVal)
-          console.log($('input[name=tags]').val());
+          // console.log($('input[name=tags]').val());
         });
 
         $('.chips').on('chip.delete', function(e, chip){
@@ -37,6 +41,71 @@
         $('.chips').on('chip.select', function(e, chip){
           // you have the selected chip here
         });
+        // QUILLJS TEXT
+        var toolbarOptions = [
+          ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+          ['blockquote', 'code-block'],
+
+          [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+          [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+          [{ 'direction': 'rtl' }],                         // text direction
+
+          [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+          [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+          [{ 'font': [] }],
+          [{ 'align': [] }],
+        ];
+        var quill = new Quill('.js-editor', {
+          modules: {
+            toolbar: toolbarOptions
+          },
+          theme: 'snow'
+        });
+
+        $('.js-editor--save').on('click', function(e){
+
+            // do a thing, possibly async, then…
+
+
+
+
+        })
+        $('.js-article__submit').on('click',function(){
+          var header;
+          var estimatedReadTime;
+          var tags;
+          var delta;
+          var articleData;
+          function declare(){
+            header = $('input[name=header]').val();
+            estimatedReadTime = $('input[name=estimatedReadTime]').val();
+            tags = arrVal;
+            delta = quill.getContents();
+
+            articleData =  {
+                'header': header,
+                'estimatedReadTime': estimatedReadTime,
+                'tags': tags,
+                'text': delta.ops,
+            }
+            console.log(delta.ops);
+            console.log("###########");
+            // console.log(articleData);
+          }
+          $.when(declare()).then(function(){
+            console.log(articleData);
+            $.post('/articles/create', articleData).fail(function(err){
+              console.log(err);
+            }).done(function(){
+              console.log('success');
+            });
+          })
+
+        })
       })
     </script>
   </body>

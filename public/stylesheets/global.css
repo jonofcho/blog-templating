@@ -1,0 +1,219 @@
+/*@media(max-width: 992px){
+  h1{
+    font-size: 34px;
+  }
+  h2{
+    font-size: 32px;
+  }
+  h3{
+    font-size: 30px;
+  }
+  h4{
+    font-size: 28px;
+  }
+}*/
+.text-underline{
+  text-decoration: underline;
+}
+img{
+  width: 100%;
+}
+.text-center{
+  text-align: center;
+}
+
+.transition{
+  transition: all ease .3s;
+}
+.opacity-off{
+  opacity: 0;
+}
+.opacity-on{
+  opacity: 1;
+}
+
+.width--full{
+  width: 100%;
+}
+.height--full{
+  height: 100%;
+}
+.height--full--view{
+  height: 100vh;
+}
+
+/*BACKGROUND */
+.bg-yellow{
+  background-color: #FED766;
+}
+.bg-navy{
+  background-color: #063042;
+}
+.bg-black-gradiant {
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(black, black 60%, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(black, black 60%, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(black, black 60%, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(black, black 60%, white); /* Standard syntax */
+}
+.bg-white-navy{
+  background: white; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(white, #063042); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(white, #063042); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(white, #063042); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(white, #063042); /* Standard syntax */
+
+}
+@media(max-width: 991px){
+  /*.height--full{
+    height: auto;
+  }*/
+}
+
+.bg-m{
+  background-color: #AF4034;
+}
+.bg-black{
+  background-color: #000000;
+}
+.bg-lightm{
+  background-color: #C65146;
+}
+.bg-lighterm{
+  background-color: #EC6A5C';
+}
+.bg-transparent{
+  background-color: transparent;
+}
+.text-w{
+  color: white;
+}
+.text-m{
+  color: #AF4034;
+}
+.text-g{
+  color: #93a4aa;
+}
+.text-navy{
+  color: #063042;
+}
+.text-yellow{
+  color: #FED766;
+}
+.text-bold{
+  font-weight: bolder;
+}
+.text--fine-print{
+  font-size: 8px;
+}
+/*PADDINGS*/
+.pleft-15{
+  padding-left: 15px;
+}
+.pright-15{
+  padding-right: 15px;
+}
+.psides-15{
+  padding: 0 15px;
+}
+.pleft-30{
+  padding-left: 30px;
+}
+.pright-30{
+  padding-right: 30px;
+}
+.psides-30{
+  padding: 0 30px;
+}
+.ptop-30{
+  padding-top: 30px;
+}
+.pbot-30{
+  padding-bottom: 30px;
+}
+.psides-45{
+  padding: 0 45px;
+}
+.padding-15{
+  padding: 15px;
+}
+.padding-30{
+  padding: 30px;
+}
+/*MARGINS*/
+.margin-center{
+  margin: 0 auto;
+}
+.mtop-0{
+  margin-top: 0px;
+}
+.mtop-10{
+  margin-top: 10px;
+}
+.mtop-15{
+  margin-top: 15px;
+}
+.mtop-30{
+  margin-top: 30px;
+}
+.mbot-0{
+  margin-bottom: 0px;
+}
+.mbot-15{
+  margin-bottom: 15px;
+}
+.mbot-30{
+  margin-bottom: 30px;
+}
+.mleft-15{
+  margin-left: 15px;
+}
+.mleft-30{
+  margin-left: 30px;
+}
+.mright-15{
+  margin-right: 15px;
+}
+.mright-30{
+  margin-right: 30px;
+}
+
+
+.flex{
+  display: flex;
+}
+.justify-center{
+  justify-content: center;
+}
+.justify-between{
+  justify-content: space-between;
+}
+.align-center{
+  align-items: center;
+}
+
+.is-relative{
+  position: relative;
+}
+.is-absolute{
+  position: absolute;
+}
+li{
+  list-style: none;
+}
+
+.border-none{
+  border: 0px;
+}
+.box-shadow-none{
+  box-shadow: none;
+}
+
+/*BUTTONS*/
+.btn{
+  height: 40px;
+  border-radius: 5px;
+}
+.btn-small{
+  width: 150px;
+}
