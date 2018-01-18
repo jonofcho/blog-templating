@@ -12,18 +12,36 @@ router.get('/', (req, res, next) => {
 
 router.get('/create', /*ensureAuthenticated,*/ (req, res, next) => {
   res.render('newarticle');
-
 })
+router.get('/:id', (req,res) => {
+  console.log(req.params.id);
+  Article.findById(req.params.id , (err, article) => {
+    console.log(article);
+    if (err) {
+      console.log(err);
+    }
+    var parsedBody = JSON.parse(article.body);
+    res.render('singleArticle', {
+      article: article,
+      parsedBody: parsedBody,
+    })
+  });
+  // console.log(article);
+
+  // res.send(article)
+})
+
 router.post('/create', /*ensureAuthenticated,*/ (req, res, next) => {
-	console.log('body: ' + JSON.stringify(req.body));
+	// console.log('body: ' + JSON.stringify(req.body));
   // res.send(req.body)
+  console.log(req.body);
   const header = req.body.header;
   const text = req.body.text;
   const createdDate = new Date();
-  const createdBy = req.user._id;
+  // const createdBy = req.user._id;
   const estimatedReadTime = req.body.estimatedReadTime;
   const tags = [];
-  console.log(req.body.tags);
+  // console.log('qwerqwer');
   const bodyTags = req.body.tags.split(',');
   bodyTags.forEach((tag) => {
     tags.push(tag);
@@ -33,23 +51,24 @@ router.post('/create', /*ensureAuthenticated,*/ (req, res, next) => {
     header : header,
     body: text,
     createdDate: createdDate,
-    createdBy: createdBy,
+    // createdBy: createdBy,
     estimatedReadTime: estimatedReadTime,
     tags: tags,
   })
-  
+
   newArticle.save((err) => {
     if (err) {
       console.log(err);
       return
     }
     // else {
-      res.redirect('/articles');
+    res.send('qwer')
+    // res.redirect('/articles');
     // }
   })
 })
 
-router.delete('/article/:id',ensureAuthenticated, (req ,res ,next) => {
+router.delete('/:id',ensureAuthenticated, (req ,res ,next) => {
   let query = {_id: req.params.id};
   Article.remove(query , (err) => {
     if (err) {

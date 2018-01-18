@@ -65,7 +65,7 @@
           },
           theme: 'snow'
         });
-
+        window.quill = quill;
         $('.js-editor--save').on('click', function(e){
 
             // do a thing, possibly async, then…
@@ -83,25 +83,25 @@
           function declare(){
             header = $('input[name=header]').val();
             estimatedReadTime = $('input[name=estimatedReadTime]').val();
-            tags = arrVal;
+            // tags = arrVal;
             delta = quill.getContents();
 
             articleData =  {
                 'header': header,
                 'estimatedReadTime': estimatedReadTime,
-                'tags': tags,
-                'text': delta.ops,
+                'tags': arrVal.join(','),
+                'text': delta,
             }
-            console.log(delta.ops);
             console.log("###########");
             // console.log(articleData);
           }
           $.when(declare()).then(function(){
             console.log(articleData);
             $.post('/articles/create', articleData).fail(function(err){
-              console.log(err);
+              // console.log(err);
             }).done(function(){
               console.log('success');
+              window.location.replace('/articles');
             });
           })
 

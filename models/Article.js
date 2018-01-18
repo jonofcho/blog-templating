@@ -6,9 +6,9 @@ var articleSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  text:{
+  body:{
     type: String,
-    required: true,
+    // required: true,
   },
   updatedDate:{
     type: String,
@@ -18,7 +18,7 @@ var articleSchema = mongoose.Schema({
   },
   createdBy:{
     type: String,
-    required: true,
+    // required: true,
   },
   estimatedReadTime:{
     type: String,
